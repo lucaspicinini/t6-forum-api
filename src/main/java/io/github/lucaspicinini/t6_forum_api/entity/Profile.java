@@ -20,6 +20,8 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long id;
+    @Column(unique = true, nullable = false)
+    private String name;
 
     @ManyToMany(mappedBy = "profiles", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @ToString.Exclude
