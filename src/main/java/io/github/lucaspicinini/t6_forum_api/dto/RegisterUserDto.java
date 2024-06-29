@@ -3,11 +3,12 @@ package io.github.lucaspicinini.t6_forum_api.dto;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
+import io.github.lucaspicinini.t6_forum_api.controller.RegisterUserController;
 
 import java.io.Serializable;
 
 /**
- * DTO for {@link io.github.lucaspicinini.t6_forum_api.controller.RegisterUserController}
+ * DTO for {@link RegisterUserController}
  */
 public record RegisterUserDto(
         @Size(message = "O nome não pode ultrapassar 255 caracteres.", max = 255)
