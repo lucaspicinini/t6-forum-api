@@ -39,7 +39,7 @@ CREATE TABLE topics
 CREATE TABLE users
 (
     id       BIGINT AUTO_INCREMENT NOT NULL,
-    username VARCHAR(255)          NOT NULL,
+    nickname VARCHAR(255)          NOT NULL,
     email    VARCHAR(255)          NOT NULL,
     password VARCHAR(255)          NOT NULL,
     CONSTRAINT pk_users PRIMARY KEY (id)

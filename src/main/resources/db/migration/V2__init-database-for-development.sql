@@ -1,10 +1,10 @@
 -- Migration to add initial users
 
-INSERT INTO users (id, username, email, password) VALUES(
+INSERT INTO users (id, nickname, email, password) VALUES(
     1, 'Lucas', 'lucas@exemplo.com', '$2a$12$D.e3i/w.yzMCttmmivk7EuXzIIsJhw/i7I8QIwlCoV8bU1Q4Q1QqC'
 );
 
-INSERT INTO users (id, username, email, password) VALUES(
+INSERT INTO users (id, nickname, email, password) VALUES(
     2, 'Flora', 'flora@exemplo.com', '$2a$12$D.e3i/w.yzMCttmmivk7EuXzIIsJhw/i7I8QIwlCoV8bU1Q4Q1QqC'
 );
 
