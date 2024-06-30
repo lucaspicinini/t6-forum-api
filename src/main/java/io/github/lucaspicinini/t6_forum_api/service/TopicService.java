@@ -8,6 +8,7 @@ import io.github.lucaspicinini.t6_forum_api.entity.User;
 import io.github.lucaspicinini.t6_forum_api.repository.CourseRepository;
 import io.github.lucaspicinini.t6_forum_api.repository.TopicRepository;
 import io.github.lucaspicinini.t6_forum_api.repository.UserRepository;
+import io.github.lucaspicinini.t6_forum_api.controller.TopicController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +16,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-
 /**
- * Service for {@link Topic}
+ * Service for {@link TopicController}
  */
 @Service
 public class TopicService {

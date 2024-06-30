@@ -1,4 +1,5 @@
 package io.github.lucaspicinini.t6_forum_api.service;
+import io.github.lucaspicinini.t6_forum_api.controller.UserController;
 
 import io.github.lucaspicinini.t6_forum_api.dto.UserUpdateDto;
 import io.github.lucaspicinini.t6_forum_api.entity.User;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Service for {@link User}
+ * Service for {@link UserController}
  */
 @Service
 public class UserService {
