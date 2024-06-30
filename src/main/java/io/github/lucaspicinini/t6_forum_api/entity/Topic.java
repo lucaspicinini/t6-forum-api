@@ -44,6 +44,10 @@ public class Topic {
     @ToString.Exclude
     private Course course;
 
+    public void addAnswer(Answer answer) {
+        this.answers.add(answer);
+    }
+
     @Override
     public final boolean equals(Object o) {
         if (this == o) return true;
