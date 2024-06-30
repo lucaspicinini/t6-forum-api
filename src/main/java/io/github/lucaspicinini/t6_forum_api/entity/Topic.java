@@ -28,6 +28,8 @@ public class Topic {
     @Column(nullable = false)
     private LocalDateTime registerDate;
     @Column(nullable = false)
+    private LocalDateTime lastUpdate;
+    @Column(nullable = false)
     private boolean status;
 
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)

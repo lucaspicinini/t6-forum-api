@@ -3,6 +3,7 @@ package io.github.lucaspicinini.t6_forum_api.service;
 import io.github.lucaspicinini.t6_forum_api.configuration.DateAndTimeConfigurations;
 import io.github.lucaspicinini.t6_forum_api.controller.AnswerController;
 import io.github.lucaspicinini.t6_forum_api.dto.AnswerCreateDto;
+import io.github.lucaspicinini.t6_forum_api.dto.AnswerUpdateDto;
 import io.github.lucaspicinini.t6_forum_api.entity.Answer;
 import io.github.lucaspicinini.t6_forum_api.entity.User;
 import io.github.lucaspicinini.t6_forum_api.repository.AnswerRepository;
@@ -38,6 +39,7 @@ public class AnswerService {
         answer.setTopic(topic);
         answer.setUser(user);
         answer.setRegisterDate(now);
+        answer.setLastUpdate(now);
         answer.setMessage(dto.message());
 
         user.addAnswer(answer);
@@ -50,6 +52,21 @@ public class AnswerService {
 
     public Page<Answer> list(Pageable pageable) {
         return answerRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public Answer update(AnswerUpdateDto dto) {
+        Answer answer = null;
+
+        if (isUserAuthorized(dto.id())) {
+            answer = answerRepository.findById(dto.id()).orElseThrow();
+            var now = DateAndTimeConfigurations.generateDateForNow();
+            answer.setLastUpdate(now);
+            answer.setMessage(dto.message());
+            answerRepository.save(answer);
+        }
+
+        return answer;
     }
 
     @Transactional

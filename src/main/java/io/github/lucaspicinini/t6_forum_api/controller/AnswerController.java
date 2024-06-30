@@ -1,7 +1,6 @@
 package io.github.lucaspicinini.t6_forum_api.controller;
 
-import io.github.lucaspicinini.t6_forum_api.dto.AnswerCreateDto;
-import io.github.lucaspicinini.t6_forum_api.dto.AnswerDetailsDto;
+import io.github.lucaspicinini.t6_forum_api.dto.*;
 import io.github.lucaspicinini.t6_forum_api.service.AnswerService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +29,17 @@ public class AnswerController {
         var page = answerService.list(pageable).map(AnswerDetailsDto::new);
 
         return ResponseEntity.ok(page);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> update(@RequestBody @Valid AnswerUpdateDto dto) {
+        if (answerService.update(dto) != null) {
+            var answer = answerService.update(dto);
+
+            return ResponseEntity.ok(new AnswerDetailsDto(answer));
+        }
+
+        return ResponseEntity.status(401).body("Acesso não autorizado.");
     }
 
     @DeleteMapping("/{id}")

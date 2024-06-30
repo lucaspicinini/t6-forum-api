@@ -23,6 +23,8 @@ public class Answer {
     private String message;
     @Column(nullable = false)
     private LocalDateTime registerDate;
+    @Column(nullable = false)
+    private LocalDateTime lastUpdate;
     private String solution;
 
     @ManyToOne

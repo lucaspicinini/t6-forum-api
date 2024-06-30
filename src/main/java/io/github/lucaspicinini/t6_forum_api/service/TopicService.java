@@ -38,6 +38,7 @@ public class TopicService {
 
         topic.setStatus(true);
         topic.setRegisterDate(now);
+        topic.setLastUpdate(now);
         topic.setTitle(dto.title());
         topic.setMessage(dto.message());
         course.ifPresent(topic::setCourse);
@@ -61,6 +62,8 @@ public class TopicService {
 
         if (isUserAuthorized(dto.id())) {
             topic = topicRepository.findById(dto.id()).orElseThrow();
+            var now = DateAndTimeConfigurations.generateDateForNow();
+            topic.setLastUpdate(now);
 
             if (dto.title() != null && !dto.title().isBlank()) {
                 topic.setTitle(dto.title());
