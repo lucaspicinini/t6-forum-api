@@ -17,6 +17,7 @@ public record TopicDetailsDto(
         String user,
         String course,
         String category,
+        String status,
         String registerDate
 ) implements Serializable {
     public TopicDetailsDto(Topic topic) {
@@ -27,6 +28,7 @@ public record TopicDetailsDto(
                 topic.getUser().getNickname(),
                 topic.getCourse().getName(),
                 topic.getCourse().getCategory(),
+                topic.isStatus() ? "Tópico Ativo" : "Tópico Inativo",
                 DateAndTimeConfigurations.formatToBr(topic.getRegisterDate())
         );
     }

@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * DTO for {@link Topic}
  */
-public record TopicCreateDto(
+public record TopicInputDto(
         @Size(message = "O título deve ter no máximo 255 caracteres.", max = 255)
         @NotBlank(message = "O título não pode estar em branco.")
         String title,

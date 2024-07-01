@@ -1,8 +1,7 @@
 package io.github.lucaspicinini.t6_forum_api.controller;
 
-import io.github.lucaspicinini.t6_forum_api.dto.TopicCreateDto;
+import io.github.lucaspicinini.t6_forum_api.dto.TopicInputDto;
 import io.github.lucaspicinini.t6_forum_api.dto.TopicDetailsDto;
-import io.github.lucaspicinini.t6_forum_api.dto.TopicUpdateDto;
 import io.github.lucaspicinini.t6_forum_api.service.TopicService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class TopicController {
     private TopicService topicService;
 
     @PostMapping
-    public ResponseEntity<TopicDetailsDto> post(@RequestBody @Valid TopicCreateDto dto, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<TopicDetailsDto> post(@RequestBody @Valid TopicInputDto dto, UriComponentsBuilder uriBuilder) {
         var topic = topicService.create(dto);
         var uri = uriBuilder.path("/topics/{id}").buildAndExpand(topic.getId()).toUri();
 
@@ -33,10 +32,10 @@ public class TopicController {
         return ResponseEntity.ok(page);
     }
 
-    @PutMapping
-    public ResponseEntity<?> update(@RequestBody @Valid TopicUpdateDto dto) {
-        if (topicService.update(dto) != null) {
-            var topic = topicService.update(dto);
+    @PutMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody @Valid TopicInputDto dto) {
+        if (topicService.update(id, dto) != null) {
+            var topic = topicService.update(id, dto);
 
             return ResponseEntity.ok(new TopicDetailsDto(topic));
         }
