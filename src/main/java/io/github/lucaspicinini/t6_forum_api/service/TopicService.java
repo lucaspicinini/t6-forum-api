@@ -2,6 +2,7 @@ package io.github.lucaspicinini.t6_forum_api.service;
 
 import io.github.lucaspicinini.t6_forum_api.configuration.DateAndTimeConfigurations;
 import io.github.lucaspicinini.t6_forum_api.dto.TopicInputDto;
+import io.github.lucaspicinini.t6_forum_api.entity.Course;
 import io.github.lucaspicinini.t6_forum_api.entity.Topic;
 import io.github.lucaspicinini.t6_forum_api.entity.User;
 import io.github.lucaspicinini.t6_forum_api.repository.CourseRepository;
@@ -40,10 +41,19 @@ public class TopicService {
         topic.setLastUpdate(now);
         topic.setTitle(dto.title());
         topic.setMessage(dto.message());
-        course.ifPresent(topic::setCourse);
-        user.ifPresent(topic::setUser);
 
-        course.ifPresent(c -> c.addTopic(topic));
+        if (course.isPresent()) {
+            topic.setCourse(course.get());
+            course.get().addTopic(topic);
+        } else {
+            var newCourse = new Course();
+            newCourse.setName(dto.course().name());
+            newCourse.setCategory("Geral");
+            topic.setCourse(newCourse);
+            newCourse.addTopic(topic);
+        }
+
+        user.ifPresent(topic::setUser);
         user.ifPresent(u -> u.addTopic(topic));
 
         topicRepository.save(topic);
