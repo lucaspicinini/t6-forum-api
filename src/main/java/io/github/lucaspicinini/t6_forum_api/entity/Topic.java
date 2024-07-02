@@ -42,7 +42,7 @@ public class Topic {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "curso_id")
+    @JoinColumn(name = "course_id", nullable = false)
     @ToString.Exclude
     private Course course;
 

@@ -2,7 +2,6 @@ package io.github.lucaspicinini.t6_forum_api.service;
 
 import io.github.lucaspicinini.t6_forum_api.configuration.DateAndTimeConfigurations;
 import io.github.lucaspicinini.t6_forum_api.dto.TopicInputDto;
-import io.github.lucaspicinini.t6_forum_api.entity.Course;
 import io.github.lucaspicinini.t6_forum_api.entity.Topic;
 import io.github.lucaspicinini.t6_forum_api.entity.User;
 import io.github.lucaspicinini.t6_forum_api.repository.CourseRepository;
@@ -31,7 +30,7 @@ public class TopicService {
     @Transactional
     public Topic create(TopicInputDto dto) {
         var topic = new Topic();
-        var course = courseRepository.findByName(dto.course().name());
+        var course = courseRepository.findFirstByName(dto.course().name());
         var authenticatedUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         var user = userRepository.findById(authenticatedUser.getId());
         var now = DateAndTimeConfigurations.generateDateForNow();
@@ -78,7 +77,7 @@ public class TopicService {
                     dto.course().name() != null &&
                     !dto.course().name().isBlank()
             ) {
-                var course = courseRepository.findByName(dto.course().name());
+                var course = courseRepository.findFirstByName(dto.course().name());
                 course.ifPresent(topic::setCourse);
             }
 

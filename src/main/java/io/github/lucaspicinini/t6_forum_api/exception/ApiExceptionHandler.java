@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 public class ApiExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<?> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
-        return ResponseEntity.badRequest().body("Erro ao parsear JSON.");
+        return ResponseEntity.badRequest().body("Erro na entrada de dados.");
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -30,6 +30,6 @@ public class ApiExceptionHandler {
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<?> handleSQLIntegrityConstraintViolationException(SQLIntegrityConstraintViolationException e) {
-        return ResponseEntity.badRequest().body("E-mail já registrado.");
+        return ResponseEntity.badRequest().body("Erro na entrada de dados.");
     }
 }
