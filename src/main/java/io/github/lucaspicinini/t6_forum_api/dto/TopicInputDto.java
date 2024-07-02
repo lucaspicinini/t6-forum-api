@@ -19,7 +19,7 @@ public record TopicInputDto(
         @NotBlank(message = "O tópico não pode estar em branco.")
         String message,
 
-        @NotBlank(message = "O tópico precisa pertencer a algum curso")
+        @NotNull(message = "O tópico precisa pertencer a algum curso")
         CourseDto course
 ) implements Serializable {
 }

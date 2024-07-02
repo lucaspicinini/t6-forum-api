@@ -41,19 +41,10 @@ public class TopicService {
         topic.setLastUpdate(now);
         topic.setTitle(dto.title());
         topic.setMessage(dto.message());
-
-        if (course.isPresent()) {
-            topic.setCourse(course.get());
-            course.get().addTopic(topic);
-        } else {
-            var newCourse = new Course();
-            newCourse.setName(dto.course().name());
-            newCourse.setCategory("Geral");
-            topic.setCourse(newCourse);
-            newCourse.addTopic(topic);
-        }
-
+        course.ifPresent(topic::setCourse);
         user.ifPresent(topic::setUser);
+
+        course.ifPresent(c -> c.addTopic(topic));
         user.ifPresent(u -> u.addTopic(topic));
 
         topicRepository.save(topic);
