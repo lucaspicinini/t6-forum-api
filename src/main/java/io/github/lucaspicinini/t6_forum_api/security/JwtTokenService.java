@@ -28,6 +28,7 @@ public class JwtTokenService {
             return JWT.create()
                     .withIssuer("t6-forum-api")
                     .withSubject(user.getEmail())
+                    .withClaim("id", user.getId())
                     .withExpiresAt(expiresAt())
                     .sign(algorithm);
         } catch (JWTCreationException e){
@@ -38,6 +39,7 @@ public class JwtTokenService {
     public String verifyTokenAndGetUser(String tokenJwt) {
         try {
             var algorithm = Algorithm.HMAC256(secret);
+
             return JWT.require(algorithm)
                     .withIssuer("t6-forum-api")
                     .build()
