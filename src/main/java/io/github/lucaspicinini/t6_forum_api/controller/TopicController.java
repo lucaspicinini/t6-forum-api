@@ -3,7 +3,6 @@ package io.github.lucaspicinini.t6_forum_api.controller;
 import io.github.lucaspicinini.t6_forum_api.dto.TopicInputDto;
 import io.github.lucaspicinini.t6_forum_api.dto.TopicDetailsDto;
 import io.github.lucaspicinini.t6_forum_api.service.TopicService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
